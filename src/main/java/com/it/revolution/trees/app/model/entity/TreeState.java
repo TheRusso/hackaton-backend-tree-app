@@ -1,7 +1,18 @@
 package com.it.revolution.trees.app.model.entity;
 
-public enum TreeState {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-    BAD, ILL, HEALTHY
+@Getter
+@RequiredArgsConstructor
+public enum TreeState {
+    DISREPAIR("Аварійний"),
+    ILL("Хворий"),
+    HEALTHY("Здоровий")
+
+    // placeholder
+    ;
+
+    private final String name;
 
 }
