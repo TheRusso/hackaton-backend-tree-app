@@ -9,3 +9,8 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
+
+amazon:
+  s3:
+    bucket:
+      name: 4vesla
