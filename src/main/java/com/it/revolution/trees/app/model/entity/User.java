@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,17 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
     @Enumerated(EnumType.ORDINAL)
     private Set<Role> roles;
+
+    @Column(name = "activation_code")
+    private String activationCode;
+
+    /**
+     * Checks whether User account is confirmed.<br>
+     * @return true if activationCode is null or an empty string, otherwise false
+     * */
+    public boolean isActivated() {
+        return Optional.ofNullable(activationCode).orElse("").isEmpty();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
