@@ -1,12 +1,15 @@
 package com.it.revolution.trees.app.mapper;
 
+import com.it.revolution.trees.app.model.dto.TaskDto;
 import com.it.revolution.trees.app.model.dto.TreeDto;
 import com.it.revolution.trees.app.model.dto.TreeShortDto;
-import com.it.revolution.trees.app.model.entity.Tree;
-import com.it.revolution.trees.app.model.entity.TreeState;
+import com.it.revolution.trees.app.model.dto.TreeTypeDto;
+import com.it.revolution.trees.app.model.entity.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TreeMapper {
@@ -25,6 +28,49 @@ public class TreeMapper {
     }
 
     public TreeDto mapToDto(Tree tree) {
-        return null;
+        String state = Optional.ofNullable(tree.getState())
+                .map(TreeState::getName)
+                .orElse(null);
+        TreeTypeDto treeTypeDto = mapToDto(tree.getType());
+
+        TreeDto treeDto = new TreeDto();
+        treeDto.setId(tree.getId());
+        treeDto.setPhotoUrl(tree.getPhotoUrl());
+        treeDto.setState(state);
+        treeDto.setRadius(tree.getRadius());
+        treeDto.setBirthDate(tree.getBirthDate());
+        treeDto.setType(treeTypeDto);
+        treeDto.setTasks(mapToDtos(tree.getTasks()));
+
+        return treeDto;
     }
+
+    public List<TaskDto> mapToDtos(List<AssignedTreeTask> assignedTreeTasks) {
+        return assignedTreeTasks.stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    public TaskDto mapToDto(AssignedTreeTask assignedTreeTask) {
+        String status = Optional.ofNullable(assignedTreeTask.getStatus())
+                .map(TreeTaskStatus::getName)
+                .orElse(null);
+        Integer executionTime = Optional.ofNullable(assignedTreeTask.getTaskType())
+                .map(TreeTaskType::getExecutionTime)
+                .orElse(null);
+
+        TaskDto taskDto = new TaskDto();
+        taskDto.setId(assignedTreeTask.getId());
+        taskDto.setStatus(status);
+        taskDto.setExpectedExecutionTime(executionTime);
+        return taskDto;
+    }
+
+    public TreeTypeDto mapToDto(TreeType treeType) {
+        TreeTypeDto treeTypeDto = new TreeTypeDto();
+        treeTypeDto.setName(treeType.getName());
+        treeTypeDto.setDescription(treeType.getDescription());
+        return treeTypeDto;
+    }
+
 }
