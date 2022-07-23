@@ -9,7 +9,19 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
-
+  mail:
+    host: smtp.gmail.com
+    username: kovalchuk.roman03@gmail.com
+    password: ${SPRING_MAIL_PASSWORD}
+    port: 465
+    protocol: smtps
+    debug: true
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+        auth: true
 
 cloud:
   aws:
