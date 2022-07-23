@@ -1,9 +1,6 @@
 package com.it.revolution.trees.app.mapper;
 
-import com.it.revolution.trees.app.model.dto.TaskDto;
-import com.it.revolution.trees.app.model.dto.TreeDto;
-import com.it.revolution.trees.app.model.dto.TreeShortDto;
-import com.it.revolution.trees.app.model.dto.TreeTypeDto;
+import com.it.revolution.trees.app.model.dto.*;
 import com.it.revolution.trees.app.model.entity.*;
 import org.springframework.stereotype.Service;
 
@@ -73,4 +70,10 @@ public class TreeMapper {
         return treeTypeDto;
     }
 
+    public TreeTaskTypeDto mapToDto(TreeTaskType treeTaskType) {
+        TreeTaskTypeDto taskDto = new TreeTaskTypeDto();
+        taskDto.setId(treeTaskType.getId());
+        taskDto.setName(treeTaskType.getName());
+        return taskDto;
+    }
 }
