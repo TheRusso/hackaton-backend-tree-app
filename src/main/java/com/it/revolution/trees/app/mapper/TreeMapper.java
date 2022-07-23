@@ -76,4 +76,27 @@ public class TreeMapper {
         taskDto.setName(treeTaskType.getName());
         return taskDto;
     }
+
+    public Tree mapToEntity(TreeCreateDto treeDto) {
+        treeDto.getTasks().stream()
+                .map(taskDto -> mapToEntity(taskDto, treeDto.get))
+                .collect(Collectors.toList());
+
+        Tree tree = new Tree();
+        tree.setBirthDate(treeDto.getBirthDate());
+        tree.setRadius(treeDto.getRadius());
+        tree.setX(treeDto.getX());
+        tree.setY(treeDto.getY());
+        tree.setState(treeDto.getState());
+        tree.setTasks(tasks);
+        return null;
+    }
+
+    public AssignedTreeTask mapToEntity(TaskDto taskDto) {
+        AssignedTreeTask assignedTreeTask = new AssignedTreeTask();
+        assignedTreeTask.setId(taskDto.getId());
+        assignedTreeTask.setStatus(TreeTaskStatus.IN_PROGRESS);
+        assignedTreeTask.setTree();
+    }
+
 }
