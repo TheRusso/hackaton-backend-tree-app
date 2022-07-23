@@ -35,7 +35,7 @@ public class TreeDto {
     private TreeTypeDto type;
 
     @JsonProperty("state")
-    private String state;
+    private TreeState state;
 
     @JsonProperty("photoUrl")
     private String photoUrl;
