@@ -33,7 +33,7 @@ public class Tree {
     @ManyToOne
     private TreeType type;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TreeState state;
 
     @Column(name = "photo_url")

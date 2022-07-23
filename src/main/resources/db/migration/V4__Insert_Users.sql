@@ -3,7 +3,7 @@ INSERT INTO users (id, email, password, full_name) VALUES (2, 'podhorhyi_2002@uk
 
 ALTER SEQUENCE users_id_seq RESTART WITH 3;
 
-INSERT INTO user_role (user_id, roles) VALUES (1, 'ADMIN');
-INSERT INTO user_role (user_id, roles) VALUES (1, 'USER');
-INSERT INTO user_role (user_id, roles) VALUES (2, 'USER');
-INSERT INTO user_role (user_id, roles) VALUES (2, 'ADMIN');
+INSERT INTO user_role (user_id, roles) VALUES (1, 1);
+INSERT INTO user_role (user_id, roles) VALUES (1, 0);
+INSERT INTO user_role (user_id, roles) VALUES (2, 1);
+INSERT INTO user_role (user_id, roles) VALUES (2, 1);

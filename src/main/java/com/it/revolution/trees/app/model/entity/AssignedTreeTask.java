@@ -20,7 +20,7 @@ public class AssignedTreeTask {
     @ManyToOne(fetch = FetchType.EAGER)
     private TreeTaskType taskType;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TreeTaskStatus status;
 
     @Column(name = "end_date")

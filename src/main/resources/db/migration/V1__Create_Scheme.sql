@@ -82,7 +82,7 @@ CREATE TABLE public.tree (
 	photo_url varchar NULL,
 	radius int4 NOT NULL,
 	register_number varchar(255) NOT NULL,
-	state varchar(10) NULL,
+	state int4 NULL,
 	x float8 NOT NULL,
 	y float8 NOT NULL,
 	type_id int8 NULL,
@@ -108,7 +108,7 @@ START WITH 1
 
 CREATE TABLE public.user_role (
 	user_id int8 NOT NULL,
-	roles varchar(255) NULL,
+	roles int4 NULL,
 	CONSTRAINT user_role_fk FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
 
@@ -122,7 +122,7 @@ CREATE TABLE public.user_role (
 CREATE TABLE public.assigned_tree_task (
 	id int8 NOT NULL,
 	end_date timestamp NULL,
-	status varchar(255) NULL,
+	status int4 NULL,
 	task_type_id int8 NULL,
 	tree_id int8 NULL,
 	CONSTRAINT assigned_tree_task_pkey PRIMARY KEY (id),
