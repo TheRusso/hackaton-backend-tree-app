@@ -8,7 +8,7 @@ public class TakenEmailException extends Exception{
     private final String email;
 
     public TakenEmailException(String email){
-        this(email, "Customer with email " + email + " is already in use, try another one.");
+        this(email, "User with email " + email + " already exists, try another one.");
     }
 
     public TakenEmailException(String email, String message){
