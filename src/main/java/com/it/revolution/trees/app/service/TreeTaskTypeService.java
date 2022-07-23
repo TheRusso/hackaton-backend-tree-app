@@ -15,10 +15,7 @@ public class TreeTaskTypeService {
     private final TreeTaskTypeRepository taskRepository;
 
     public List<TreeTaskType> getTreeTaskTypes() {
-        List<TreeTaskType> treeTaskTypeList = new ArrayList<>();
-        taskRepository.findAll()
-                .forEach(treeTaskTypeList::add);
-        return treeTaskTypeList;
+        return taskRepository.findAll();
     }
 
 }
