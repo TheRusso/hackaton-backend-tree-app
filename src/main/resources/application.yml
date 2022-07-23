@@ -1,3 +1,5 @@
+server:
+  port: 5000
 spring:
   datasource:
     url: jdbc:postgresql://db-hackaton-trees.cqokpt4nuw0j.eu-central-1.rds.amazonaws.com/db_hackaton_trees
@@ -40,9 +42,9 @@ amazon:
 
 web:
   backend:
-    host: "localhost:8080"
+    host: ${WEB_BACKEND_HOST}
   frontend:
-    host: "nashdomen.com"
+    host: ${WEB_FRONTEND_HOST}
 
 jwt:
   secret: 4vesla
