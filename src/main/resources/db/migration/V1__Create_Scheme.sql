@@ -34,7 +34,7 @@ START WITH 1
 CREATE TABLE public.tree_type (
 	id int8 NOT NULL,
 	description varchar NULL,
-	name varchar(20) NULL,
+	name varchar(20) NOT NULL,
 	CONSTRAINT tree_type_pkey PRIMARY KEY (id)
 );
 
@@ -55,9 +55,9 @@ START WITH 1
 
 CREATE TABLE public.users (
 	id int8 NOT NULL,
-	email varchar(64) NULL,
-	full_name varchar(64) NULL,
-	password varchar(255) NULL,
+	email varchar(64) NOT NULL UNIQUE,
+	full_name varchar(64) NOT NULL,
+	password varchar(255) NOT NULL,
     activation_code varchar(255),
 	CONSTRAINT users_pkey PRIMARY KEY (id)
 );
@@ -82,7 +82,7 @@ CREATE TABLE public.tree (
 	birth_date timestamp NOT NULL,
 	photo_url varchar NULL,
 	radius int4 NOT NULL,
-	register_number varchar(255) NOT NULL,
+	register_number varchar(255) NOT NULL UNIQUE,
 	state int4 NULL,
 	x float8 NOT NULL,
 	y float8 NOT NULL,
@@ -123,9 +123,9 @@ CREATE TABLE public.user_role (
 CREATE TABLE public.assigned_tree_task (
 	id int8 NOT NULL,
 	end_date timestamp NULL,
-	status int4 NULL,
-	task_type_id int8 NULL,
-	tree_id int8 NULL,
+	status int4 NOT NULL,
+	task_type_id int8 NOT NULL,
+	tree_id int8 NOT NULL,
 	CONSTRAINT assigned_tree_task_pkey PRIMARY KEY (id),
 	CONSTRAINT assigned_tree_task_task_type_fk FOREIGN KEY (task_type_id) REFERENCES public.tree_task_type(id),
 	CONSTRAINT assigned_tree_task_tree_fk FOREIGN KEY (tree_id) REFERENCES public.tree(id)
