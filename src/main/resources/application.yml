@@ -10,10 +10,27 @@ spring:
     hibernate:
       ddl-auto: validate
 
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_USER_ACCESS_KEY}
+      secret-key: ${S3_USER_SECRET_KEY}
+    region:
+      static: eu-central-1
+    stack:
+      auto: false
+
 amazon:
   s3:
     bucket:
       name: 4vesla
+
+web:
+  backend:
+    host: "localhost:8080"
+  frontend:
+    host: "nashdomen.com"
 
 jwt:
   secret: 4vesla

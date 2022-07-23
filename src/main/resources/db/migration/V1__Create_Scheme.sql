@@ -58,6 +58,7 @@ CREATE TABLE public.users (
 	email varchar(64) NULL,
 	full_name varchar(64) NULL,
 	password varchar(255) NULL,
+    activation_code varchar(255),
 	CONSTRAINT users_pkey PRIMARY KEY (id)
 );
 
