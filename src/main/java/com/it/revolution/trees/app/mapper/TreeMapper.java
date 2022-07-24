@@ -12,28 +12,28 @@ import java.util.stream.Collectors;
 public class TreeMapper {
 
     public TreeShortDto mapToShortDto(Tree tree) {
-        String stateName = Optional.ofNullable(tree.getState())
-                .map(TreeState::getName)
-                .orElse(null);
 
         TreeShortDto dto = new TreeShortDto();
         dto.setId(tree.getId());
-        dto.setState(stateName);
+        dto.setState(tree.getState());
         dto.setPhotoUrl(tree.getPhotoUrl());
-        dto.setRegistrationNumber(tree.getRegisterNumber());
+        dto.setRegistrationNumber(tree.getRegistrationNumber());
+        dto.setX(tree.getX());
+        dto.setY(tree.getY());
+        dto.setRadius(tree.getRadius());
         return dto;
     }
 
     public TreeDto mapToDto(Tree tree) {
-        String state = Optional.ofNullable(tree.getState())
-                .map(TreeState::getName)
-                .orElse(null);
+
         TreeTypeDto treeTypeDto = mapToDto(tree.getType());
 
         TreeDto treeDto = new TreeDto();
         treeDto.setId(tree.getId());
         treeDto.setPhotoUrl(tree.getPhotoUrl());
-        treeDto.setState(state);
+        treeDto.setX(tree.getX());
+        treeDto.setY(tree.getY());
+        treeDto.setState(tree.getState());
         treeDto.setRadius(tree.getRadius());
         treeDto.setBirthDate(tree.getBirthDate());
         treeDto.setType(treeTypeDto);
@@ -49,16 +49,14 @@ public class TreeMapper {
     }
 
     public TaskDto mapToDto(AssignedTreeTask assignedTreeTask) {
-        String status = Optional.ofNullable(assignedTreeTask.getStatus())
-                .map(TreeTaskStatus::getName)
-                .orElse(null);
         Integer executionTime = Optional.ofNullable(assignedTreeTask.getTaskType())
                 .map(TreeTaskType::getExecutionTime)
                 .orElse(null);
 
         TaskDto taskDto = new TaskDto();
         taskDto.setId(assignedTreeTask.getId());
-        taskDto.setStatus(status);
+        taskDto.setName(assignedTreeTask.getTaskType().getName());
+        taskDto.setStatus(assignedTreeTask.getStatus());
         taskDto.setExpectedExecutionTime(executionTime);
         return taskDto;
     }

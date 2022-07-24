@@ -14,8 +14,8 @@ public class TreeDto {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("registerNumber")
-    private String registerNumber;
+    @JsonProperty("registrationNumber")
+    private String registrationNumber;
 
     @JsonProperty("x")
     private Double x;
@@ -33,7 +33,7 @@ public class TreeDto {
     private TreeTypeDto type;
 
     @JsonProperty("state")
-    private String state;
+    private TreeState state;
 
     @JsonProperty("photoUrl")
     private String photoUrl;
