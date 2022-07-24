@@ -43,6 +43,7 @@ public class TreeMapper {
 
         TreeDto treeDto = new TreeDto();
         treeDto.setId(tree.getId());
+        treeDto.setRegistrationNumber(tree.getRegistrationNumber());
         treeDto.setPhotoUrl(tree.getPhotoUrl());
         treeDto.setX(tree.getX());
         treeDto.setY(tree.getY());
