@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Objects.nonNull;
 
@@ -55,7 +56,7 @@ public class TreeMapper {
     }
 
     public List<TaskDto> mapToDtos(List<AssignedTreeTask> assignedTreeTasks) {
-        return assignedTreeTasks.stream()
+        return Optional.ofNullable(assignedTreeTasks).orElseGet(ArrayList::new).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
