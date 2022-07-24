@@ -73,20 +73,11 @@ public class TreeService {
         Tree created = treeRepository.save(tree);
 
         if (nonNull(treeDto.getTasks())) {
-            List<AssignedTreeTask> assigned = treeDto.getTasks().stream().map(t -> mapToEntity(t, created)).collect(Collectors.toList());
+            List<AssignedTreeTask> assigned = treeDto.getTasks().stream().map(t -> treeMapper.mapToEntity(t, created)).collect(Collectors.toList());
             assignedTreeTaskRepository.saveAll(assigned);
+            created.setTasks(assigned);
         }
         return created;
-    }
-
-    private AssignedTreeTask mapToEntity(AddTreeTaskRequestDto taskRequestDto, Tree tree) {
-        AssignedTreeTask assigned = new AssignedTreeTask();
-        TreeTaskType taskType = taskTypeRepository.findById(taskRequestDto.getId()).orElse(null);
-        assigned.setTaskType(taskType);
-        assigned.setStatus(TreeTaskStatus.IN_PROGRESS);
-        assigned.setTree(tree);
-        return assigned;
-
     }
 
 

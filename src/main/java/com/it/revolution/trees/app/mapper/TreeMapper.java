@@ -88,12 +88,6 @@ public class TreeMapper {
         return taskDto;
     }
 
-    public AssignedTreeTask mapToEntity(TaskDto taskDto) {
-        AssignedTreeTask assignedTreeTask = new AssignedTreeTask();
-        assignedTreeTask.setId(taskDto.getId());
-        assignedTreeTask.setStatus(TreeTaskStatus.IN_PROGRESS);
-        return assignedTreeTask;
-    }
 
     public Tree mapToEntity(AddTreeRequestDto treeDto) {
         Tree tree = new Tree();
@@ -109,16 +103,14 @@ public class TreeMapper {
         return tree;
     }
 
-    private AssignedTreeTask mapToEntity(AddTreeTaskRequestDto taskRequestDto) {
+
+    public AssignedTreeTask mapToEntity(AddTreeTaskRequestDto taskRequestDto, Tree tree) {
         AssignedTreeTask assigned = new AssignedTreeTask();
-//        TreeTaskType taskType = treeTaskTypeRepository.findById(taskRequestDto.getId()).orElse(null);
-        TreeTaskType taskType = new TreeTaskType();
-        taskType.setId(taskRequestDto.getId());
-        taskType.setName(taskRequestDto.getName());
+        TreeTaskType taskType = treeTaskTypeRepository.findById(taskRequestDto.getId()).orElse(null);
         assigned.setTaskType(taskType);
         assigned.setStatus(TreeTaskStatus.IN_PROGRESS);
+        assigned.setTree(tree);
         return assigned;
-
     }
 
 }

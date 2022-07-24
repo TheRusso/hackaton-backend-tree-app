@@ -24,6 +24,8 @@ public class TreeController {
 
     private final TreeService treeService;
 
+    private final TreeMapper treeMapper;
+
     @GetMapping
     public ResponseEntity<List<TreeShortDto>> getListTreeShort(@RequestParam("startX") Double startX,
                                                                @RequestParam("endX") Double endX,
@@ -39,9 +41,9 @@ public class TreeController {
     }
 
     @PostMapping
-    public ResponseEntity<Tree> create(AddTreeRequestDto treeDto,
+    public ResponseEntity<TreeDto> create(AddTreeRequestDto treeDto,
                                        @RequestParam(name = "photo", required = false) MultipartFile photo) {
-        return ResponseEntity.ok(treeService.createTree(treeDto, photo));
+        return ResponseEntity.ok(treeMapper.mapToDto(treeService.createTree(treeDto, photo)));
     }
 
 }
