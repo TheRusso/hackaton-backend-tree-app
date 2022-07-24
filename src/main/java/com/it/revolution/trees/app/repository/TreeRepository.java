@@ -15,4 +15,6 @@ public interface TreeRepository extends JpaRepository<Tree, Long> {
     Long getNextId();
 
     List<Tree> findAllByXBetweenAndYBetween(Double startX, Double endX, Double startY, Double endY);
+
+    List<Tree> findAllByRegistrationNumber(String registrationNumber);
 }
