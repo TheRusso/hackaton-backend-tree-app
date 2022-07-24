@@ -63,6 +63,7 @@ public class TreeMapper {
 
     public TreeTypeDto mapToDto(TreeType treeType) {
         TreeTypeDto treeTypeDto = new TreeTypeDto();
+        treeTypeDto.setId(treeType.getId());
         treeTypeDto.setName(treeType.getName());
         treeTypeDto.setDescription(treeType.getDescription());
         return treeTypeDto;

@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class TreeTypeDto {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("name")
     private String name;
 
