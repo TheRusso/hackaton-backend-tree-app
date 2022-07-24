@@ -1,7 +1,6 @@
 package com.it.revolution.trees.app.controllers;
 
 import com.it.revolution.trees.app.mapper.TreeMapper;
-import com.it.revolution.trees.app.model.dto.TaskDto;
 import com.it.revolution.trees.app.model.dto.TreeTaskTypeDto;
 import com.it.revolution.trees.app.model.entity.TreeTaskType;
 import com.it.revolution.trees.app.service.TreeTaskTypeService;

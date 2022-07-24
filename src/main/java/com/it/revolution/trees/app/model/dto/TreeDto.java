@@ -2,7 +2,6 @@ package com.it.revolution.trees.app.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.it.revolution.trees.app.model.entity.TreeState;
-import com.it.revolution.trees.app.model.entity.TreeType;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -16,8 +15,8 @@ public class TreeDto {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("registerNumber")
-    private String registerNumber;
+    @JsonProperty("registrationNumber")
+    private String registrationNumber;
 
     @JsonProperty("x")
     private Double x;
@@ -35,7 +34,7 @@ public class TreeDto {
     private TreeTypeDto type;
 
     @JsonProperty("state")
-    private String state;
+    private TreeState state;
 
     @JsonProperty("photoUrl")
     private String photoUrl;
