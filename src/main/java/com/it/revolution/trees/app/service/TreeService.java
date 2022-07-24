@@ -42,8 +42,13 @@ public class TreeService {
         return treeRepository.findById(id).orElse(null);
     }
 
-    public List<TreeShortDto> getTreeShortList(Double startX, Double endX, Double startY, Double endY) {
-        List<Tree> treeList = treeRepository.findAllByXBetweenAndYBetween(startX, endX, startY, endY);
+    public List<TreeShortDto> getTreeShortList(Double startX, Double endX, Double startY, Double endY, String registrationNumber) {
+        List<Tree> treeList;
+        if (nonNull(registrationNumber)){
+            treeList = treeRepository.findAllByRegistrationNumber(registrationNumber);
+        } else {
+            treeList = treeRepository.findAllByXBetweenAndYBetween(startX, endX, startY, endY);
+        }
         return treeList.stream()
                 .map(treeMapper::mapToShortDto)
                 .collect(Collectors.toList());

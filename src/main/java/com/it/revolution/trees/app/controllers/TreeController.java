@@ -28,11 +28,12 @@ public class TreeController {
     private final TreeMapper treeMapper;
 
     @GetMapping
-    public ResponseEntity<List<TreeShortDto>> getListTreeShort(@RequestParam("startX") Double startX,
-                                                               @RequestParam("endX") Double endX,
-                                                               @RequestParam("startY") Double startY,
-                                                               @RequestParam("endY") Double endY) {
-        List<TreeShortDto> trees = treeService.getTreeShortList(startX, endX, startY, endY);
+    public ResponseEntity<List<TreeShortDto>> getListTreeShort(@RequestParam(value = "startX", required = false) Double startX,
+                                                               @RequestParam(value = "endX", required = false) Double endX,
+                                                               @RequestParam(value = "startY", required = false) Double startY,
+                                                               @RequestParam(value = "endY", required = false) Double endY,
+                                                               @RequestParam(value = "registration_number", required = false) String registrationNumber) {
+        List<TreeShortDto> trees = treeService.getTreeShortList(startX, endX, startY, endY, registrationNumber);
         return ResponseEntity.ok(trees);
     }
 
