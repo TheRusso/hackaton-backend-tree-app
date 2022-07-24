@@ -19,4 +19,13 @@ public class TreeShortDto {
     @JsonProperty("state")
     private TreeState state;
 
+    @JsonProperty("x")
+    private Double x;
+
+    @JsonProperty("y")
+    private Double y;
+
+    @JsonProperty("radius")
+    private Integer radius;
+
 }

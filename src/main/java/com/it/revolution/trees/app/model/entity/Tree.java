@@ -16,7 +16,7 @@ public class Tree {
     private Long id;
 
     @Column(name = "register_number", nullable = false)
-    private String registerNumber;
+    private String registrationNumber;
 
     @Column(name = "x", nullable = false)
     private Double x;
