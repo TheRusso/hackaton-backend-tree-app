@@ -2,14 +2,26 @@ package com.it.revolution.trees.app.mapper;
 
 import com.it.revolution.trees.app.model.dto.*;
 import com.it.revolution.trees.app.model.entity.*;
+import com.it.revolution.trees.app.repository.TreeRepository;
+import com.it.revolution.trees.app.repository.TreeTaskTypeRepository;
+import com.it.revolution.trees.app.service.TreeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.nonNull;
+
 @Service
+@RequiredArgsConstructor
 public class TreeMapper {
+
+    private final TreeTaskTypeRepository treeTaskTypeRepository;
+
+    private final TreeRepository treeRepository;
 
     public TreeShortDto mapToShortDto(Tree tree) {
 
@@ -76,26 +88,37 @@ public class TreeMapper {
         return taskDto;
     }
 
-    public Tree mapToEntity(TreeCreateDto treeDto) {
-        treeDto.getTasks().stream()
-                .map(taskDto -> mapToEntity(taskDto, treeDto.get))
-                .collect(Collectors.toList());
-
-        Tree tree = new Tree();
-        tree.setBirthDate(treeDto.getBirthDate());
-        tree.setRadius(treeDto.getRadius());
-        tree.setX(treeDto.getX());
-        tree.setY(treeDto.getY());
-        tree.setState(treeDto.getState());
-        tree.setTasks(tasks);
-        return null;
-    }
-
     public AssignedTreeTask mapToEntity(TaskDto taskDto) {
         AssignedTreeTask assignedTreeTask = new AssignedTreeTask();
         assignedTreeTask.setId(taskDto.getId());
         assignedTreeTask.setStatus(TreeTaskStatus.IN_PROGRESS);
-        assignedTreeTask.setTree();
+        return assignedTreeTask;
+    }
+
+    public Tree mapToEntity(AddTreeRequestDto treeDto) {
+        Tree tree = new Tree();
+        Long nextId = treeRepository.getNextId();
+        tree.setId(nextId);
+        tree.setRegistrationNumber(String.format("%010d", nextId));
+        tree.setX(treeDto.getX());
+        tree.setY(treeDto.getY());
+        tree.setRadius(treeDto.getRadius());
+        tree.setType(treeDto.getType());
+        tree.setState(treeDto.getState());
+        tree.setBirthDate(treeDto.getBirthDate());
+        return tree;
+    }
+
+    private AssignedTreeTask mapToEntity(AddTreeTaskRequestDto taskRequestDto) {
+        AssignedTreeTask assigned = new AssignedTreeTask();
+//        TreeTaskType taskType = treeTaskTypeRepository.findById(taskRequestDto.getId()).orElse(null);
+        TreeTaskType taskType = new TreeTaskType();
+        taskType.setId(taskRequestDto.getId());
+        taskType.setName(taskRequestDto.getName());
+        assigned.setTaskType(taskType);
+        assigned.setStatus(TreeTaskStatus.IN_PROGRESS);
+        return assigned;
+
     }
 
 }

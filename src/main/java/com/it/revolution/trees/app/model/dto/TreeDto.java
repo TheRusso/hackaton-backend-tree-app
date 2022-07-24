@@ -1,6 +1,7 @@
 package com.it.revolution.trees.app.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.it.revolution.trees.app.model.entity.TreeState;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 

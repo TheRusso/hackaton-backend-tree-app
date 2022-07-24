@@ -1,18 +1,20 @@
 package com.it.revolution.trees.app.model.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "tree")
 public class Tree {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "register_number", nullable = false)
@@ -39,7 +41,7 @@ public class Tree {
     @Column(name = "photo_url")
     private String photoUrl;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tree")
     private List<AssignedTreeTask> tasks;
 
 }

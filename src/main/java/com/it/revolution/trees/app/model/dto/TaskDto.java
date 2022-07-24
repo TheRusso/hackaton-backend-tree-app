@@ -13,6 +13,9 @@ public class TaskDto {
     @JsonProperty("id")
     private Long id;
 
+    @JsonProperty("tree_id")
+    private Long treeId;
+
     @JsonProperty("name")
     private String name;
 
